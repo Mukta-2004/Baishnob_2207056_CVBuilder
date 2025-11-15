@@ -93,10 +93,15 @@
                 </font>
             </Label>
 
+            <Button fx:id="btnNext"
+                    mnemonicParsing="false"
+                    prefHeight="60"
+                    prefWidth="250"
+                    text="NEXT"
+                    textFill="#391051"
+                    textOverrun="CENTER_ELLIPSIS"
+                    onAction="#nextPage">
 
-
-
-            <Button fx:id="btnNext" mnemonicParsing="false" prefHeight="60" prefWidth="250" text="NEXT" textFill="#391051" textOverrun="CENTER_ELLIPSIS">
                 <font>
                     <Font name="Calibri Bold" size="22.0" />
                 </font>
@@ -127,6 +132,7 @@
                 <effect>
                     <DropShadow color="#00000055" radius="10" />
                 </effect>
+
             </Button>
 
             <Text fill="WHITE" opacity="0.92" textAlignment="CENTER" wrappingWidth="360">
