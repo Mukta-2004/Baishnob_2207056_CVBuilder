@@ -1,0 +1,10 @@
+#coverBorder {
+    -fx-background-color: 
+        linear-gradient(to bottom right, #1c4e5a, #0d2451);
+
+    -fx-border-color: #0b705a;
+    -fx-border-width: 6;
+    -fx-border-style: solid;
+    -fx-border-radius: 12;
+    -fx-background-radius: 12;
+}
