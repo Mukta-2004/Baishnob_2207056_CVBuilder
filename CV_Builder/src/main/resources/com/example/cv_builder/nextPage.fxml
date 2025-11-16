@@ -1,10 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.control.Label?>
 
-<VBox alignment="CENTER" xmlns="http://javafx.com/javafx/17"
-      xmlns:fx="http://javafx.com/fxml/1">
+<ScrollPane fitToWidth="true"
+            xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.cv_builder.nextpageController">
 
-    <Label text="This is the NEXT PAGE!" />
-</VBox>
+    <VBox prefWidth="800" spacing="20">
+        <padding>
+            <Insets top="20" bottom="20" left="20" right="20" />
+        </padding>
+
+        <Label text="Personal Information" style="-fx-font-size: 20px;" />
+
+        <TextField fx:id="txtName" promptText="Full Name"/>
+        <TextField fx:id="txtEmail" promptText="Email Address"/>
+        <TextField fx:id="txtPhone" promptText="Phone Number"/>
+        <TextField fx:id="txtAddress" promptText="Address"/>
+
+        <Separator/>
+
+        <Label text="Academic information" style="-fx-font-size: 20px;" />
+
+        <TableView fx:id="educationTable" prefHeight="200">
+            <columns>
+                <TableColumn fx:id="examCol" text="Exam Title" prefWidth="150"/>
+                <TableColumn fx:id="deptCol" text="Department" prefWidth="150"/>
+                <TableColumn fx:id="boardCol" text="Board/University" prefWidth="200"/>
+                <TableColumn fx:id="yearCol" text="Passing Year" prefWidth="120"/>
+                <TableColumn fx:id="gradeCol" text="Grade/Division" prefWidth="120"/>
+            </columns>
+        </TableView>
+
+        <Separator/>
+
+        <Label text="Skills" style="-fx-font-size: 20px;"/>
+        <TextArea fx:id="txtSkills" prefRowCount="4" promptText="List your skills (comma separated)"/>
+
+        <Separator/>
+
+        <Label text="Projects" style="-fx-font-size: 20px;"/>
+        <TextArea fx:id="txtProjects" prefRowCount="5" promptText="Describe your projects"/>
+
+        <Separator/>
+
+        <Button text="Generate CV" onAction="#generateCV" prefWidth="200"/>
+
+    </VBox>
+</ScrollPane>

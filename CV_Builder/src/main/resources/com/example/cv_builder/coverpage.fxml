@@ -4,142 +4,64 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.effect.DropShadow?>
-<?import javafx.scene.layout.Background?>
-<?import javafx.scene.layout.BackgroundFill?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.CornerRadii?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.paint.LinearGradient?>
-<?import javafx.scene.paint.RadialGradient?>
-<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane id="coverBorder" prefHeight="600" prefWidth="480" stylesheets="@../../../style.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.cv_builder.coverpageController">
-
-
-    <background>
-        <Background>
-            <fills>
-
-                <BackgroundFill>
-                    <fill>
-                        <LinearGradient cycleMethod="NO_CYCLE" endX="1" endY="1" proportional="true" startX="0" startY="0">
-                            <stops>
-                                <Stop color="#0e5060" offset="0" />
-                                <Stop color="#167f5e" offset="1" />
-                            </stops>
-                        </LinearGradient>
-                    </fill>
-                    <radii>
-                        <CornerRadii />
-                    </radii>
-                    <insets>
-                        <Insets bottom="0" left="0" right="0" top="0" />
-                    </insets>
-                </BackgroundFill>
-
-
-                <BackgroundFill>
-                    <fill>
-                        <LinearGradient cycleMethod="NO_CYCLE" endX="0" endY="1" proportional="true" startX="1" startY="0">
-                            <stops>
-                                <Stop color="#0c295b" offset="0" />
-                                <Stop color="#265f51" offset="1" />
-                            </stops>
-                        </LinearGradient>
-                    </fill>
-                    <radii>
-                        <CornerRadii />
-                    </radii>
-                    <insets>
-                        <Insets bottom="0" left="0" right="0" top="0" />
-                    </insets>
-                </BackgroundFill>
-
-
-                <BackgroundFill>
-                    <fill>
-                        <RadialGradient centerX="0.1" centerY="0.1" cycleMethod="NO_CYCLE" focusAngle="0" focusDistance="0" proportional="true" radius="1.2">
-                            <stops>
-                                <Stop color="#FFFFFF20" offset="0" />
-                                <Stop color="#FFFFFF00" offset="1" />
-                            </stops>
-                        </RadialGradient>
-                    </fill>
-                    <radii>
-                        <CornerRadii />
-                    </radii>
-                    <insets>
-                        <Insets bottom="0" left="0" right="0" top="0" />
-                    </insets>
-                </BackgroundFill>
-
-            </fills>
-        </Background>
-    </background>
-
+<BorderPane id="coverBorder" prefHeight="600" prefWidth="480"
+            xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.cv_builder.coverpageController"
+            stylesheets="@style.css">
 
     <center>
-        <VBox alignment="CENTER" prefHeight="800.0" prefWidth="426.0" spacing="28" BorderPane.alignment="CENTER">
+        <VBox alignment="CENTER" spacing="30" BorderPane.alignment="CENTER">
             <padding>
-                <Insets bottom="24" left="24" right="24" top="24" />
+                <Insets top="30" bottom="30" left="20" right="20" />
             </padding>
 
-            <!-- Headline -->
-            <Label alignment="CENTER" text="Welcome to my&#10;    CV Builder" textFill="WHITE" wrapText="true">
+            <Label text="Welcome to my&#10;CV Builder" textFill="WHITE" wrapText="true">
                 <font>
-                    <Font name="System Bold" size="42" />
+                    <Font name="System Bold" size="42"/>
                 </font>
             </Label>
 
-            <Button fx:id="btnNext"
-                    mnemonicParsing="false"
-                    prefHeight="60"
-                    prefWidth="250"
-                    text="NEXT"
-                    textFill="#391051"
-                    textOverrun="CENTER_ELLIPSIS"
-                    onAction="#nextPage">
-
-                <font>
-                    <Font name="Calibri Bold" size="22.0" />
-                </font>
-
+            <Button text="NEXT" onAction="#nextPage" prefWidth="250" prefHeight="60">
                 <background>
                     <Background>
                         <fills>
                             <BackgroundFill>
                                 <fill>
-                                    <LinearGradient cycleMethod="NO_CYCLE" endX="0" endY="1" proportional="true" startX="0" startY="0">
+                                    <LinearGradient startX="0" startY="0" endX="0" endY="1">
                                         <stops>
-                                            <Stop color="#63a4ff" offset="0" />
-                                            <Stop color="#2e89ff" offset="1" />
+                                            <Stop offset="0" color="#63a4ff"/>
+                                            <Stop offset="1" color="#2e89ff"/>
                                         </stops>
                                     </LinearGradient>
                                 </fill>
                                 <radii>
-                                    <CornerRadii bottomLeft="12" bottomRight="12" topLeft="12" topRight="12" />
+                                    <CornerRadii topLeft="12" topRight="12" bottomLeft="12" bottomRight="12"/>
                                 </radii>
-                                <insets>
-                                    <Insets bottom="0" left="0" right="0" top="0" />
-                                </insets>
                             </BackgroundFill>
                         </fills>
                     </Background>
                 </background>
 
                 <effect>
-                    <DropShadow color="#00000055" radius="10" />
+                    <DropShadow radius="10" color="#00000055"/>
                 </effect>
 
+                <font>
+                    <Font name="Calibri Bold" size="22"/>
+                </font>
             </Button>
 
-            <Text fill="WHITE" opacity="0.92" textAlignment="CENTER" wrappingWidth="360">
+            <Text text="This is a CV Builder — all you have to do is provide information."
+                  fill="WHITE" wrappingWidth="350">
                 <font>
-                    <Font size="16" />
+                    <Font size="16"/>
                 </font>
-                This is a CV Builder — all you have to do is provide your personal and professional information.
             </Text>
 
         </VBox>
