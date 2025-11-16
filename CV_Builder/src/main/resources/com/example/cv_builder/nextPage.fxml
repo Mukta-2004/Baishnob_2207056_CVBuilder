@@ -1,53 +1,63 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.VBox?>
 
-<ScrollPane fitToWidth="true"
-            xmlns="http://javafx.com/javafx/21"
-            xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.example.cv_builder.nextpageController">
+<ScrollPane fitToWidth="true" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.cv_builder.nextpageController">
 
     <VBox prefWidth="800" spacing="20">
         <padding>
-            <Insets top="20" bottom="20" left="20" right="20" />
+            <Insets bottom="20" left="20" right="20" top="20" />
         </padding>
 
-        <Label text="Personal Information" style="-fx-font-size: 20px;" />
+        <Label style="-fx-font-size: 20px;" text="Personal Information" />
 
-        <TextField fx:id="txtName" promptText="Full Name"/>
-        <TextField fx:id="txtEmail" promptText="Email Address"/>
-        <TextField fx:id="txtPhone" promptText="Phone Number"/>
-        <TextField fx:id="txtAddress" promptText="Address"/>
+        <TextField fx:id="txtName" promptText="Full Name" />
+        <TextField fx:id="txtEmail" promptText="Email Address" />
+        <TextField fx:id="txtPhone" promptText="Phone Number" />
+        <TextField fx:id="txtAddress" promptText="Address" />
+      <TextField promptText="Date of birth" />
+      <TextField promptText="Nationality" />
 
-        <Separator/>
+        <Separator />
 
-        <Label text="Academic information" style="-fx-font-size: 20px;" />
+        <Label style="-fx-font-size: 20px;" text="Academic information" />
+      <Label text="Please double click to select a cel in the chart below " textFill="#920ed9" />
+      <Label text="Please click &quot;Enter&quot; after putting any  information or changes to save " textFill="#cf0fc8" />
 
         <TableView fx:id="educationTable" prefHeight="200">
             <columns>
-                <TableColumn fx:id="examCol" text="Exam Title" prefWidth="150"/>
-                <TableColumn fx:id="deptCol" text="Department" prefWidth="150"/>
-                <TableColumn fx:id="boardCol" text="Board/University" prefWidth="200"/>
-                <TableColumn fx:id="yearCol" text="Passing Year" prefWidth="120"/>
-                <TableColumn fx:id="gradeCol" text="Grade/Division" prefWidth="120"/>
+                <TableColumn fx:id="examCol" prefWidth="150" text="Exam Title" />
+                <TableColumn fx:id="deptCol" prefWidth="150" text="Department" />
+                <TableColumn fx:id="boardCol" prefWidth="200" text="Board/University" />
+                <TableColumn fx:id="yearCol" prefWidth="120" text="Passing Year" />
+                <TableColumn fx:id="gradeCol" prefWidth="120" text="Grade/Division" />
             </columns>
         </TableView>
 
-        <Separator/>
+        <Separator />
+      <Label style="-fx-font-size: 20px;" text="Experience" />
+      <TextArea prefHeight="148.0" prefWidth="760.0" promptText="List your experiences here" />
 
-        <Label text="Skills" style="-fx-font-size: 20px;"/>
-        <TextArea fx:id="txtSkills" prefRowCount="4" promptText="List your skills (comma separated)"/>
+        <Label style="-fx-font-size: 20px;" text="Skills" />
+        <TextArea fx:id="txtSkills" prefRowCount="4" promptText="List your skills (comma separated)" />
 
-        <Separator/>
+        <Separator />
 
-        <Label text="Projects" style="-fx-font-size: 20px;"/>
-        <TextArea fx:id="txtProjects" prefRowCount="5" promptText="Describe your projects"/>
+        <Label style="-fx-font-size: 20px;" text="Projects" />
+        <TextArea fx:id="txtProjects" prefRowCount="5" promptText="Describe your projects" />
 
-        <Separator/>
+        <Separator />
 
-        <Button text="Generate CV" onAction="#generateCV" prefWidth="200"/>
+        <Button onAction="#generateCV" prefWidth="200" text="Generate CV" />
 
     </VBox>
 </ScrollPane>
