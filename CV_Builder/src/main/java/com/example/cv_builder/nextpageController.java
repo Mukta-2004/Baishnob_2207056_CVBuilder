@@ -41,7 +41,7 @@ public class nextpageController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
-        // FIX: Correct TableView name
+
         educationTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 
         educationTable.setEditable(true);
@@ -64,7 +64,6 @@ public class nextpageController implements Initializable {
         yearCol.setOnEditCommit(e -> e.getRowValue().setYear(e.getNewValue()));
         gradeCol.setOnEditCommit(e -> e.getRowValue().setGrade(e.getNewValue()));
 
-        // Add 5 empty rows
         for (int i = 0; i < 5; i++) {
             educationTable.getItems().add(new Education("", "", "", "", ""));
         }

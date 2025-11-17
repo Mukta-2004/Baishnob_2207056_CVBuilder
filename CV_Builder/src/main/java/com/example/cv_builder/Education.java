@@ -20,14 +20,12 @@ public class Education {
         this.grade = new SimpleStringProperty(grade);
     }
 
-    // Getters
     public String getExam() { return exam.get(); }
     public String getDepartment() { return department.get(); }
     public String getBoard() { return board.get(); }
     public String getYear() { return year.get(); }
     public String getGrade() { return grade.get(); }
 
-    // Setters
     public void setExam(String value) { exam.set(value); }
     public void setDepartment(String value) { department.set(value); }
     public void setBoard(String value) { board.set(value); }

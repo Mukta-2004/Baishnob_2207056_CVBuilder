@@ -1,13 +1,9 @@
-/* ------------------------
-   GENERAL LAYOUT
-------------------------- */
+
 .vbox {
     -fx-background-color: #082419;
 }
 
-/* ------------------------
-   TEXT FIELDS (GREEN BOX)
-------------------------- */
+
 .input-field {
     -fx-background-color: #0c4030;
     -fx-text-fill: white;
@@ -18,9 +14,6 @@
     -fx-border-radius: 8;
 }
 
-/* ------------------------
-   TEXT AREAS (GREEN BOX)
-------------------------- */
 .input-area {
     -fx-control-inner-background: #0c4030;
     -fx-text-fill: white;
@@ -30,9 +23,7 @@
     -fx-border-radius: 8;
 }
 
-/* ------------------------
-   WHITE BOX SECTIONS
-------------------------- */
+
 .white-box {
     -fx-background-color: white;
     -fx-padding: 15;
@@ -54,9 +45,7 @@
     -fx-border-radius: 6;
 }
 
-/* ------------------------
-   TABLE VIEW FIXES
-------------------------- */
+
 .table-view {
     -fx-background-color: #ffffff;
     -fx-border-color: #0c4030;
