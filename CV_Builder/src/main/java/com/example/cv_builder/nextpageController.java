@@ -41,6 +41,9 @@ public class nextpageController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
+        // FIX: Correct TableView name
+        educationTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+
         educationTable.setEditable(true);
 
         examCol.setCellValueFactory(new PropertyValueFactory<>("exam"));
@@ -61,6 +64,7 @@ public class nextpageController implements Initializable {
         yearCol.setOnEditCommit(e -> e.getRowValue().setYear(e.getNewValue()));
         gradeCol.setOnEditCommit(e -> e.getRowValue().setGrade(e.getNewValue()));
 
+        // Add 5 empty rows
         for (int i = 0; i < 5; i++) {
             educationTable.getItems().add(new Education("", "", "", "", ""));
         }
@@ -91,7 +95,14 @@ public class nextpageController implements Initializable {
         );
 
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setScene(new Scene(root));
+
+        Scene scene = new Scene(root, 900, 700);  // << RECOMMENDED SIZE
+        stage.setScene(scene);
+
+        stage.setMinWidth(900);   // prevents layout breaking
+        stage.setMinHeight(700);
+
         stage.show();
     }
+
 }

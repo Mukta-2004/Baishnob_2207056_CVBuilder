@@ -1,31 +1,74 @@
-.nextpage-root {
-    -fx-background-color: #e8f3ef;
+/* ------------------------
+   GENERAL LAYOUT
+------------------------- */
+.vbox {
+    -fx-background-color: #082419;
 }
 
-.nextpage-box {
-    -fx-background-color: white;
-    -fx-padding: 25;
-    -fx-border-color: #144333;
-    -fx-border-width: 2;
-    -fx-border-radius: 12;
-    -fx-background-radius: 12;
-}
-
-.nextpage-title {
-    -fx-font-size: 28px;
-    -fx-font-weight: bold;
-    -fx-text-fill: #144333;
-}
-
-.nextpage-button {
-    -fx-background-color: #144333;
+/* ------------------------
+   TEXT FIELDS (GREEN BOX)
+------------------------- */
+.input-field {
+    -fx-background-color: #0c4030;
     -fx-text-fill: white;
-    -fx-font-size: 16px;
-    -fx-padding: 8 20;
+    -fx-prompt-text-fill: #9ee2c0;
+    -fx-background-radius: 8;
+    -fx-padding: 8;
+    -fx-border-color: #1dbf73;
+    -fx-border-radius: 8;
+}
+
+/* ------------------------
+   TEXT AREAS (GREEN BOX)
+------------------------- */
+.input-area {
+    -fx-control-inner-background: #0c4030;
+    -fx-text-fill: white;
+    -fx-prompt-text-fill: #9ee2c0;
+    -fx-background-radius: 8;
+    -fx-border-color: #1dbf73;
+    -fx-border-radius: 8;
+}
+
+/* ------------------------
+   WHITE BOX SECTIONS
+------------------------- */
+.white-box {
+    -fx-background-color: white;
+    -fx-padding: 15;
     -fx-background-radius: 10;
 }
 
+.white-box-text {
+    -fx-text-fill: #0c4030;
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+}
+
+.white-box-area {
+    -fx-control-inner-background: #fafafa;
+    -fx-text-fill: #0c4030;
+    -fx-prompt-text-fill: #5a7f73;
+    -fx-background-radius: 6;
+    -fx-border-color: #0c4030;
+    -fx-border-radius: 6;
+}
+
+/* ------------------------
+   TABLE VIEW FIXES
+------------------------- */
 .table-view {
-    -fx-border-color: #144333;
+    -fx-background-color: #ffffff;
+    -fx-border-color: #0c4030;
     -fx-border-width: 1;
+}
+
+.table-view .column-header {
+    -fx-background-color: #d9f2e8;
+    -fx-border-color: #0c4030;
+}
+
+.table-row-cell, .table-cell {
+    -fx-border-color: #0c4030;
+    -fx-text-fill: black;
 }

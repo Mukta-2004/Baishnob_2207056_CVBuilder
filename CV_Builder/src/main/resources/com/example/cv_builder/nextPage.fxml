@@ -12,59 +12,78 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<ScrollPane fitToWidth="true" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.cv_builder.nextpageController">
+<ScrollPane fitToWidth="true"
+            xmlns="http://javafx.com/javafx/25"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.cv_builder.nextpageController"
+            stylesheets="@nextpage.css">
 
-    <VBox prefWidth="800" spacing="20">
-        <padding>
-            <Insets bottom="20" left="20" right="20" top="20" />
-        </padding>
+    <content>
+        <VBox prefWidth="800" spacing="20" styleClass="vbox">
+            <padding>
+                <Insets top="20" right="20" bottom="20" left="20"/>
+            </padding>
 
-        <Label style="-fx-font-size: 20px;" text="Personal Information" />
+            <Label text="Personal Information"
+                   style="-fx-font-size: 20px; -fx-text-fill: #7cb7af;"/>
 
-        <TextField fx:id="txtName" promptText="Full Name" />
-        <TextField fx:id="txtEmail" promptText="Email Address" />
-        <TextField fx:id="txtPhone" promptText="Phone Number" />
-        <TextField fx:id="txtAddress" promptText="Address" />
-      <TextField promptText="Date of birth" />
+            <TextField fx:id="txtName"     promptText="Full Name"        styleClass="input-field"/>
+            <TextField fx:id="txtEmail"    promptText="Email Address"    styleClass="input-field"/>
+            <TextField fx:id="txtPhone"    promptText="Phone Number"     styleClass="input-field"/>
+            <TextField fx:id="txtAddress"  promptText="Address"          styleClass="input-field"/>
+            <TextField fx:id="txtBirth"    promptText="Date of Birth"    styleClass="input-field"/>
 
-        <Separator />
 
-        <Label style="-fx-font-size: 20px;" text="Academic Information" />
-      <Label text="Please double cick to seect a cell and enter after putting any information or changes" textFill="#27dc97">
-         <font>
-            <Font name="Arial Bold" size="12.0" />
-         </font>
-      </Label>
 
-        <TableView fx:id="educationTable" prefHeight="220">
-            <columns>
-                <TableColumn fx:id="examCol" prefWidth="150" text="Exam Title" />
-                <TableColumn fx:id="deptCol" prefWidth="150" text="Department" />
-                <TableColumn fx:id="boardCol" prefWidth="200" text="Board/University" />
-                <TableColumn fx:id="yearCol" prefWidth="120" text="Passing Year" />
-                <TableColumn fx:id="gradeCol" prefWidth="120" text="Grade/Division" />
-            </columns>
-        </TableView>
+            <Separator/>
 
-        <Button onAction="#addRow" prefWidth="200" text="Add Row" />
+            <Label text="Academic Information"
+                   style="-fx-font-size: 20px; -fx-text-fill: #7cb7af;"/>
 
-        <Separator />
+            <Label text="Double-click a cell to edit, press Enter to save"
+                   textFill="#27dc97">
+                <font>
+                    <Font name="Arial Bold" size="12.0"/>
+                </font>
+            </Label>
 
-        <Label style="-fx-font-size: 20px;" text="Experience" />
-        <TextArea fx:id="txtExperience" prefRowCount="4" promptText="Describe your experience" />
+            <TableView fx:id="educationTable" prefHeight="220">
+                <columns>
+                    <TableColumn fx:id="examCol"  prefWidth="150" text="Exam Title"/>
+                    <TableColumn fx:id="deptCol"  prefWidth="150" text="Department"/>
+                    <TableColumn fx:id="boardCol" prefWidth="200" text="Board/University"/>
+                    <TableColumn fx:id="yearCol"  prefWidth="120" text="Passing Year"/>
+                    <TableColumn fx:id="gradeCol" prefWidth="120" text="Grade/Division"/>
+                </columns>
+            </TableView>
 
-        <Label style="-fx-font-size: 20px;" text="Skills" />
-        <TextArea fx:id="txtSkills" prefRowCount="4" promptText="Skills (comma separated)" />
+            <Button text="Add Row" prefWidth="200" onAction="#addRow"/>
 
-        <Separator />
+            <Separator/>
 
-        <Label style="-fx-font-size: 20px;" text="Projects" />
-        <TextArea fx:id="txtProjects" prefRowCount="5" promptText="Describe your projects" />
+            <VBox spacing="8" styleClass="white-box">
+                <Label text="Experience" styleClass="white-box-text"/>
+                <TextArea fx:id="txtExperience" prefRowCount="4" wrapText="true"
+                          styleClass="white-box-area"/>
+            </VBox>
 
-        <Separator />
+            <VBox spacing="8" styleClass="white-box">
+                <Label text="Skills" styleClass="white-box-text"/>
+                <TextArea fx:id="txtSkills" prefRowCount="4" wrapText="true"
+                          styleClass="white-box-area"/>
+            </VBox>
 
-        <Button onAction="#generateCV" prefWidth="200" text="Generate CV" />
+            <VBox spacing="8" styleClass="white-box">
+                <Label text="Projects" styleClass="white-box-text"/>
+                <TextArea fx:id="txtProjects" prefRowCount="5" wrapText="true"
+                          styleClass="white-box-area"/>
+            </VBox>
 
-    </VBox>
+            <Separator/>
+
+            <Button text="Generate CV" prefWidth="200" onAction="#generateCV"/>
+
+        </VBox>
+    </content>
 
 </ScrollPane>
