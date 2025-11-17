@@ -19,9 +19,7 @@
             <Label text="Your CV" textFill="white">
                 <font><Font size="34"/></font>
             </Label>
-            <Label text="Generated Successfully" textFill="#e8d8ff">
-                <font><Font size="18"/></font>
-            </Label>
+
         </VBox>
 
         <VBox spacing="12" style="-fx-background-color: #ffffff22; -fx-padding: 20; -fx-background-radius: 12;">
@@ -58,6 +56,18 @@
 
             <Label fx:id="lblProjects" textFill="white" wrapText="true"/>
         </VBox>
+
+        <VBox spacing="12" style="-fx-background-color: #ffffff22; -fx-padding: 20; -fx-background-radius: 12;">
+            <Label text="Experience" textFill="white">
+                <font><Font size="24"/></font>
+            </Label>
+
+            <Label fx:id="lblExperience" textFill="white" wrapText="true"/>
+        </VBox>
+
+        <Label text="Generated Successfully" textFill="#e8d8ff">
+            <font><Font size="18"/></font>
+        </Label>
 
     </VBox>
 </ScrollPane>

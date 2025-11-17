@@ -1,0 +1,31 @@
+.nextpage-root {
+    -fx-background-color: #e8f3ef;
+}
+
+.nextpage-box {
+    -fx-background-color: white;
+    -fx-padding: 25;
+    -fx-border-color: #144333;
+    -fx-border-width: 2;
+    -fx-border-radius: 12;
+    -fx-background-radius: 12;
+}
+
+.nextpage-title {
+    -fx-font-size: 28px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #144333;
+}
+
+.nextpage-button {
+    -fx-background-color: #144333;
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+    -fx-padding: 8 20;
+    -fx-background-radius: 10;
+}
+
+.table-view {
+    -fx-border-color: #144333;
+    -fx-border-width: 1;
+}

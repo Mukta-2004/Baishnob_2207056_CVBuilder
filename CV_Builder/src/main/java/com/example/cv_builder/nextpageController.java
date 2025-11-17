@@ -9,11 +9,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
-
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 
@@ -25,33 +21,55 @@ import java.util.ResourceBundle;
 
 public class nextpageController implements Initializable {
 
-    @FXML
-    private TextField txtName;
-    @FXML
-    private TextField txtEmail;
-    @FXML
-    private TextField txtPhone;
-    @FXML
-    private TextField txtAddress;
+    @FXML private TextField txtName;
+    @FXML private TextField txtEmail;
+    @FXML private TextField txtPhone;
+    @FXML private TextField txtAddress;
+
+    @FXML private TextArea txtSkills;
+    @FXML private TextArea txtProjects;
+    @FXML private TextArea txtExperience;
+
+    @FXML private TableView<Education> educationTable;
+    @FXML private TableColumn<Education, String> examCol;
+    @FXML private TableColumn<Education, String> deptCol;
+    @FXML private TableColumn<Education, String> boardCol;
+    @FXML private TableColumn<Education, String> yearCol;
+    @FXML private TableColumn<Education, String> gradeCol;
+
+
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+
+        educationTable.setEditable(true);
+
+        examCol.setCellValueFactory(new PropertyValueFactory<>("exam"));
+        deptCol.setCellValueFactory(new PropertyValueFactory<>("department"));
+        boardCol.setCellValueFactory(new PropertyValueFactory<>("board"));
+        yearCol.setCellValueFactory(new PropertyValueFactory<>("year"));
+        gradeCol.setCellValueFactory(new PropertyValueFactory<>("grade"));
+
+        examCol.setCellFactory(TextFieldTableCell.forTableColumn());
+        deptCol.setCellFactory(TextFieldTableCell.forTableColumn());
+        boardCol.setCellFactory(TextFieldTableCell.forTableColumn());
+        yearCol.setCellFactory(TextFieldTableCell.forTableColumn());
+        gradeCol.setCellFactory(TextFieldTableCell.forTableColumn());
+
+        examCol.setOnEditCommit(e -> e.getRowValue().setExam(e.getNewValue()));
+        deptCol.setOnEditCommit(e -> e.getRowValue().setDepartment(e.getNewValue()));
+        boardCol.setOnEditCommit(e -> e.getRowValue().setBoard(e.getNewValue()));
+        yearCol.setOnEditCommit(e -> e.getRowValue().setYear(e.getNewValue()));
+        gradeCol.setOnEditCommit(e -> e.getRowValue().setGrade(e.getNewValue()));
+
+        for (int i = 0; i < 5; i++) {
+            educationTable.getItems().add(new Education("", "", "", "", ""));
+        }
+    }
 
     @FXML
-    private TextArea txtSkills;
-    @FXML
-    private TextArea txtProjects;
-
-    @FXML
-    private TableView<Education> educationTable;
-
-    @FXML
-    private TableColumn<Education, String> examCol;
-    @FXML
-    private TableColumn<Education, String> deptCol;
-    @FXML
-    private TableColumn<Education, String> boardCol;
-    @FXML
-    private TableColumn<Education, String> yearCol;
-    @FXML
-    private TableColumn<Education, String> gradeCol;
+    private void addRow(ActionEvent event) {
+        educationTable.getItems().add(new Education("", "", "", "", ""));
+    }
 
     @FXML
     private void generateCV(ActionEvent event) throws IOException {
@@ -68,44 +86,12 @@ public class nextpageController implements Initializable {
                 txtAddress.getText(),
                 txtSkills.getText(),
                 txtProjects.getText(),
-                educationTable.getItems()
+                educationTable.getItems(),
+                txtExperience.getText()
         );
 
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(new Scene(root));
         stage.show();
     }
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-
-        educationTable.setEditable(true);
-
-        // Correct property names
-        examCol.setCellValueFactory(new PropertyValueFactory<>("exam"));
-        deptCol.setCellValueFactory(new PropertyValueFactory<>("department"));
-        boardCol.setCellValueFactory(new PropertyValueFactory<>("board"));
-        yearCol.setCellValueFactory(new PropertyValueFactory<>("year"));
-        gradeCol.setCellValueFactory(new PropertyValueFactory<>("grade"));
-
-        // Enable editing
-        examCol.setCellFactory(TextFieldTableCell.forTableColumn());
-        deptCol.setCellFactory(TextFieldTableCell.forTableColumn());
-        boardCol.setCellFactory(TextFieldTableCell.forTableColumn());
-        yearCol.setCellFactory(TextFieldTableCell.forTableColumn());
-        gradeCol.setCellFactory(TextFieldTableCell.forTableColumn());
-
-        // Correct edit commits
-        examCol.setOnEditCommit(e -> e.getRowValue().setExam(e.getNewValue()));
-        deptCol.setOnEditCommit(e -> e.getRowValue().setDepartment(e.getNewValue()));
-        boardCol.setOnEditCommit(e -> e.getRowValue().setBoard(e.getNewValue()));
-        yearCol.setOnEditCommit(e -> e.getRowValue().setYear(e.getNewValue()));
-        gradeCol.setOnEditCommit(e -> e.getRowValue().setGrade(e.getNewValue()));
-
-        // Add 5 empty rows
-        for (int i = 0; i < 5; i++) {
-            educationTable.getItems().add(new Education("", "", "", "", ""));
-        }
-    }
-
-
 }

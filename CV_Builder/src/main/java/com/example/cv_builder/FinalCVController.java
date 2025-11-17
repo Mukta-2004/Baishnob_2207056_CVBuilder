@@ -11,12 +11,13 @@ public class FinalCVController {
     @FXML private Label lblEmail;
     @FXML private Label lblPhone;
     @FXML private Label lblAddress;
+    @FXML private Label lblExperience;
     @FXML private Label lblSkills;
     @FXML private Label lblProjects;
     @FXML private VBox educationList;
-
     public void setData(String name, String email, String phone, String address,
-                        String skills, String projects, ObservableList<Education> educations) {
+                        String skills, String projects, ObservableList<Education> educations,
+                        String experience) {
 
         lblName.setText("Name: " + name);
         lblEmail.setText("Email: " + email);
@@ -25,19 +26,32 @@ public class FinalCVController {
 
         lblSkills.setText(skills);
         lblProjects.setText(projects);
+        lblExperience.setText(experience);
+
 
         educationList.getChildren().clear();
 
         for (Education edu : educations) {
+
+            if (edu.getExam().isBlank() &&
+                    edu.getDepartment().isBlank() &&
+                    edu.getBoard().isBlank() &&
+                    edu.getYear().isBlank() &&
+                    edu.getGrade().isBlank()) {
+                continue;
+            }
+
             Label row = new Label(
-                    edu.getExam() + " | " +
-                            edu.getDepartment() + " | " +
-                            edu.getBoard() + " | " +
-                            edu.getYear() + " | " +
+                    edu.getExam() + " – " +
+                            edu.getDepartment() + " – " +
+                            edu.getBoard() + " – " +
+                            edu.getYear() + " – " +
                             edu.getGrade()
             );
+
             row.setStyle("-fx-text-fill: white; -fx-font-size: 14;");
             educationList.getChildren().add(row);
         }
+
     }
 }

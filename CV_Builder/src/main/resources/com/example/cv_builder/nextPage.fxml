@@ -10,6 +10,7 @@
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 <ScrollPane fitToWidth="true" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.cv_builder.nextpageController">
 
@@ -25,15 +26,17 @@
         <TextField fx:id="txtPhone" promptText="Phone Number" />
         <TextField fx:id="txtAddress" promptText="Address" />
       <TextField promptText="Date of birth" />
-      <TextField promptText="Nationality" />
 
         <Separator />
 
-        <Label style="-fx-font-size: 20px;" text="Academic information" />
-      <Label text="Please double click to select a cel in the chart below " textFill="#920ed9" />
-      <Label text="Please click &quot;Enter&quot; after putting any  information or changes to save " textFill="#cf0fc8" />
+        <Label style="-fx-font-size: 20px;" text="Academic Information" />
+      <Label text="Please double cick to seect a cell and enter after putting any information or changes" textFill="#27dc97">
+         <font>
+            <Font name="Arial Bold" size="12.0" />
+         </font>
+      </Label>
 
-        <TableView fx:id="educationTable" prefHeight="200">
+        <TableView fx:id="educationTable" prefHeight="220">
             <columns>
                 <TableColumn fx:id="examCol" prefWidth="150" text="Exam Title" />
                 <TableColumn fx:id="deptCol" prefWidth="150" text="Department" />
@@ -43,12 +46,15 @@
             </columns>
         </TableView>
 
+        <Button onAction="#addRow" prefWidth="200" text="Add Row" />
+
         <Separator />
-      <Label style="-fx-font-size: 20px;" text="Experience" />
-      <TextArea prefHeight="148.0" prefWidth="760.0" promptText="List your experiences here" />
+
+        <Label style="-fx-font-size: 20px;" text="Experience" />
+        <TextArea fx:id="txtExperience" prefRowCount="4" promptText="Describe your experience" />
 
         <Label style="-fx-font-size: 20px;" text="Skills" />
-        <TextArea fx:id="txtSkills" prefRowCount="4" promptText="List your skills (comma separated)" />
+        <TextArea fx:id="txtSkills" prefRowCount="4" promptText="Skills (comma separated)" />
 
         <Separator />
 
@@ -60,4 +66,5 @@
         <Button onAction="#generateCV" prefWidth="200" text="Generate CV" />
 
     </VBox>
+
 </ScrollPane>
