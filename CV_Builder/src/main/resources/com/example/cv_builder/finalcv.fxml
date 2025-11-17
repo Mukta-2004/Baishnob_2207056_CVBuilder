@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+
+<ScrollPane xmlns="http://javafx.com/javafx/25"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.cv_builder.FinalCVController"
+            fitToWidth="true">
+
+    <VBox spacing="20" prefWidth="800"
+          style="-fx-background-color: linear-gradient(to bottom right, #3b0a57, #4b1b8f, #7a0a52); -fx-padding: 30;">
+
+        <VBox spacing="5">
+            <Label text="Your CV" textFill="white">
+                <font><Font size="34"/></font>
+            </Label>
+            <Label text="Generated Successfully" textFill="#e8d8ff">
+                <font><Font size="18"/></font>
+            </Label>
+        </VBox>
+
+        <VBox spacing="12" style="-fx-background-color: #ffffff22; -fx-padding: 20; -fx-background-radius: 12;">
+            <Label text="Personal Information" textFill="white">
+                <font><Font size="24"/></font>
+            </Label>
+
+            <Label fx:id="lblName" textFill="white" />
+            <Label fx:id="lblEmail" textFill="white" />
+            <Label fx:id="lblPhone" textFill="white" />
+            <Label fx:id="lblAddress" textFill="white" />
+        </VBox>
+
+        <VBox spacing="12" style="-fx-background-color: #ffffff22; -fx-padding: 20; -fx-background-radius: 12;">
+            <Label text="Education" textFill="white">
+                <font><Font size="24"/></font>
+            </Label>
+
+            <VBox fx:id="educationList" spacing="8"/>
+        </VBox>
+
+        <VBox spacing="12" style="-fx-background-color: #ffffff22; -fx-padding: 20; -fx-background-radius: 12;">
+            <Label text="Skills" textFill="white">
+                <font><Font size="24"/></font>
+            </Label>
+
+            <Label fx:id="lblSkills" textFill="white"/>
+        </VBox>
+
+        <VBox spacing="12" style="-fx-background-color: #ffffff22; -fx-padding: 20; -fx-background-radius: 12;">
+            <Label text="Projects" textFill="white">
+                <font><Font size="24"/></font>
+            </Label>
+
+            <Label fx:id="lblProjects" textFill="white" wrapText="true"/>
+        </VBox>
+
+    </VBox>
+</ScrollPane>
