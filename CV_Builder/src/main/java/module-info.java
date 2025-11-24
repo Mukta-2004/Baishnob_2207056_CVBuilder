@@ -1,6 +1,7 @@
 module com.example.cv_builder {
     requires javafx.controls;
     requires javafx.fxml;
+    requires java.sql;
     requires javafx.web;
 
     requires org.controlsfx.controls;
