@@ -76,6 +76,15 @@ public class nextpageController implements Initializable {
 
     @FXML
     private void generateCV(ActionEvent event) throws IOException {
+        CVDAO.saveCV(
+                txtName.getText(),
+                txtEmail.getText(),
+                txtPhone.getText(),
+                txtAddress.getText(),
+                txtSkills.getText(),
+                txtProjects.getText(),
+                txtExperience.getText()
+        );
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("finalcv.fxml"));
         Parent root = loader.load();
