@@ -9,6 +9,7 @@ public class HelloApplication extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         Database.initialize();
+        Database.initializeDatabase();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("coverpage.fxml"));
         Scene scene = new Scene(loader.load());
         stage.setTitle("CV Builder");

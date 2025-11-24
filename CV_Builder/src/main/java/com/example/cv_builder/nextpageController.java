@@ -1,18 +1,17 @@
 package com.example.cv_builder;
 
+import javafx.application.Platform;
+import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
-
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -37,13 +36,10 @@ public class nextpageController implements Initializable {
     @FXML private TableColumn<Education, String> yearCol;
     @FXML private TableColumn<Education, String> gradeCol;
 
-
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
-
         educationTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
-
         educationTable.setEditable(true);
 
         examCol.setCellValueFactory(new PropertyValueFactory<>("exam"));
@@ -64,9 +60,32 @@ public class nextpageController implements Initializable {
         yearCol.setOnEditCommit(e -> e.getRowValue().setYear(e.getNewValue()));
         gradeCol.setOnEditCommit(e -> e.getRowValue().setGrade(e.getNewValue()));
 
-        for (int i = 0; i < 5; i++) {
-            educationTable.getItems().add(new Education("", "", "", "", ""));
-        }
+        Task<Void> loadTask = new Task<>() {
+            @Override
+            protected Void call() {
+                var list = CVDAO.getAllEducations();
+                Platform.runLater(() -> {
+                    educationTable.setItems(list);
+                    if (list.isEmpty()) {
+                        for (int i = 0; i < 5; i++) {
+                            educationTable.getItems().add(new Education("", "", "", "", ""));
+                        }
+                    }
+                });
+                return null;
+            }
+        };
+
+        loadTask.setOnFailed(e -> {
+            loadTask.getException().printStackTrace();
+            if (educationTable.getItems().isEmpty()) {
+                for (int i = 0; i < 5; i++) {
+                    educationTable.getItems().add(new Education("", "", "", "", ""));
+                }
+            }
+        });
+
+        new Thread(loadTask, "edu-loader").start();
     }
 
     @FXML
@@ -76,41 +95,80 @@ public class nextpageController implements Initializable {
 
     @FXML
     private void generateCV(ActionEvent event) throws IOException {
-        CVDAO.saveCV(
-                txtName.getText(),
-                txtEmail.getText(),
-                txtPhone.getText(),
-                txtAddress.getText(),
-                txtSkills.getText(),
-                txtProjects.getText(),
-                txtExperience.getText()
-        );
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("finalcv.fxml"));
-        Parent root = loader.load();
+        Node source = (Node) event.getSource();
+        if (source instanceof Button) {
+            ((Button) source).setDisable(true);
+        }
 
-        FinalCVController controller = loader.getController();
+        String name = txtName.getText();
+        String email = txtEmail.getText();
+        String phone = txtPhone.getText();
+        String address = txtAddress.getText();
+        String skills = txtSkills.getText();
+        String projects = txtProjects.getText();
+        String experience = txtExperience.getText();
 
-        controller.setData(
-                txtName.getText(),
-                txtEmail.getText(),
-                txtPhone.getText(),
-                txtAddress.getText(),
-                txtSkills.getText(),
-                txtProjects.getText(),
-                educationTable.getItems(),
-                txtExperience.getText()
-        );
+        Task<Void> saveTask = new Task<>() {
+            @Override
+            protected Void call() {
+                CVDAO.saveCV(name, email, phone, address, skills, projects, experience);
+                CVDAO.saveEducations(educationTable.getItems());
+                return null;
+            }
+        };
 
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        saveTask.setOnSucceeded(t -> {
+            if (source instanceof Button) {
+                ((Button) source).setDisable(false);
+            }
+            Platform.runLater(() -> {
+                try {
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("finalcv.fxml"));
+                    Parent root = loader.load();
+                    FinalCVController controller = loader.getController();
+                    controller.setData(
+                            name,
+                            email,
+                            phone,
+                            address,
+                            skills,
+                            projects,
+                            educationTable.getItems(),
+                            experience
+                    );
 
-        Scene scene = new Scene(root, 900, 700);  // << RECOMMENDED SIZE
-        stage.setScene(scene);
+                    Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                    Scene scene = new Scene(root, 900, 700);
+                    stage.setScene(scene);
+                    stage.setMinWidth(900);
+                    stage.setMinHeight(700);
+                    stage.show();
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                    showAlert("Error", "Unable to open Final CV view: " + ex.getMessage());
+                }
+            });
+        });
 
-        stage.setMinWidth(900);   // prevents layout breaking
-        stage.setMinHeight(700);
+        saveTask.setOnFailed(t -> {
+            if (source instanceof Button) {
+                ((Button) source).setDisable(false);
+            }
+            saveTask.getException().printStackTrace();
+            showAlert("Save Error", "Failed to save CV: " + saveTask.getException().getMessage());
+        });
 
-        stage.show();
+        new Thread(saveTask, "cv-saver").start();
     }
 
+    private void showAlert(String title, String message) {
+        Platform.runLater(() -> {
+            Alert a = new Alert(Alert.AlertType.ERROR);
+            a.setTitle(title);
+            a.setHeaderText(null);
+            a.setContentText(message);
+            a.showAndWait();
+        });
+    }
 }

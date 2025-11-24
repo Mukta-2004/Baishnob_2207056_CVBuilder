@@ -35,7 +35,28 @@ public class Database {
         try (Connection conn = getConnection();
              Statement stmt = conn.createStatement()) {
             stmt.execute(sql);
-            System.out.println("Database initialized!");
+            System.out.println("personal_info table ensured.");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void initializeDatabase() {
+        String sql = """
+            CREATE TABLE IF NOT EXISTS education (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                exam TEXT,
+                department TEXT,
+                board TEXT,
+                year TEXT,
+                grade TEXT
+            );
+        """;
+
+        try (Connection conn = getConnection();
+             Statement stmt = conn.createStatement()) {
+            stmt.execute(sql);
+            System.out.println("education table ensured.");
         } catch (SQLException e) {
             e.printStackTrace();
         }
