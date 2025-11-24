@@ -14,6 +14,7 @@
 <junit.version>5.12.1</junit.version>  </properties>
 
   <dependencies>
+
     <dependency>
       <groupId>org.openjfx</groupId>
       <artifactId>javafx-controls</artifactId>
@@ -88,7 +89,15 @@
       <artifactId>junit-jupiter-engine</artifactId>
       <version>${junit.version}</version>
       <scope>test</scope>
-    </dependency>  </dependencies>
+    </dependency>
+      <dependency>
+          <!-- https://mvnrepository.com/artifact/org.json/json -->
+              <groupId>org.json</groupId>
+              <artifactId>json</artifactId>
+              <version>20250517</version>
+      </dependency>
+
+  </dependencies>
 
   <build>
     <plugins>
