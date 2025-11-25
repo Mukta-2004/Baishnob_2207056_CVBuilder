@@ -37,6 +37,7 @@ public class nextpageController implements Initializable {
     @FXML private TableColumn<Education, String> gradeCol;
 
     @Override
+
     public void initialize(URL url, ResourceBundle rb) {
 
         educationTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
@@ -63,14 +64,21 @@ public class nextpageController implements Initializable {
         Task<Void> loadTask = new Task<>() {
             @Override
             protected Void call() {
+
+                CVDAO.clearEducations();
+
                 var list = CVDAO.getAllEducations();
+
                 Platform.runLater(() -> {
                     educationTable.setItems(list);
+
                     if (list.isEmpty()) {
                         for (int i = 0; i < 5; i++) {
                             educationTable.getItems().add(new Education("", "", "", "", ""));
                         }
                     }
+
+                    educationTable.refresh();
                 });
                 return null;
             }
@@ -78,15 +86,19 @@ public class nextpageController implements Initializable {
 
         loadTask.setOnFailed(e -> {
             loadTask.getException().printStackTrace();
+
             if (educationTable.getItems().isEmpty()) {
                 for (int i = 0; i < 5; i++) {
                     educationTable.getItems().add(new Education("", "", "", "", ""));
                 }
             }
+
+            educationTable.refresh();
         });
 
         new Thread(loadTask, "edu-loader").start();
     }
+
 
     @FXML
     private void addRow(ActionEvent event) {
